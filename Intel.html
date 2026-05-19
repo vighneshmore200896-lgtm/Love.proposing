@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Will You Be Mine?</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffb199);
+      overflow:hidden;
+      padding:20px;
+    }
+
+    .card{
+      width:100%;
+      max-width:380px;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(12px);
+      border-radius:25px;
+      padding:35px 25px;
+      text-align:center;
+      box-shadow:0 8px 30px rgba(0,0,0,0.2);
+      color:white;
+      animation:fadeIn 1s ease;
+    }
+
+    h1{
+      font-size:2rem;
+      margin-bottom:15px;
+    }
+
+    p{
+      font-size:1rem;
+      line-height:1.6;
+      margin-bottom:25px;
+    }
+
+    .heart{
+      font-size:4rem;
+      animation:beat 1s infinite;
+      margin-bottom:20px;
+    }
+
+    .buttons{
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    button{
+      border:none;
+      padding:12px 28px;
+      border-radius:50px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s ease;
+      font-weight:600;
+    }
+
+    .yes{
+      background:white;
+      color:#ff4d79;
+    }
+
+    .yes:hover{
+      transform:scale(1.08);
+      background:#ffe6ec;
+    }
+
+    .no{
+      background:rgba(255,255,255,0.25);
+      color:white;
+    }
+
+    .no:hover{
+      transform:scale(0.95);
+    }
+
+    .message{
+      margin-top:20px;
+      font-size:1.2rem;
+      font-weight:600;
+      display:none;
+    }
+
+    @keyframes beat{
+      0%,100%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.15);
+      }
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:480px){
+      h1{
+        font-size:1.7rem;
+      }
+
+      p{
+        font-size:0.95rem;
+      }
+
+      button{
+        width:100%;
+      }
+
+      .buttons{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart">❤️</div>
+
+    <h1>Will You Be Mine?</h1>
+
+    <p>
+      From the moment I met you,  
+      my world became more beautiful.  
+      Will you make my life even more special?
+    </p>
+
+    <div class="buttons">
+      <button class="yes" onclick="celebrate()">Yes 💖</button>
+      <button class="no" onclick="moveButton(this)">No 😢</button>
+    </div>
+
+    <div class="message" id="message">
+      Yayyy!! 💍❤️
+    </div>
+  </div>
+
+  <script>
+    function celebrate() {
+      document.getElementById("message").style.display = "block";
+
+      confetti({
+        particleCount: 250,
+        spread: 120,
+        origin: { y: 0.6 }
+      });
+
+      setTimeout(() => {
+        confetti({
+          particleCount: 150,
+          angle: 60,
+          spread: 90,
+          origin: { x: 0 }
+        });
+
+        confetti({
+          particleCount: 150,
+          angle: 120,
+          spread: 90,
+          origin: { x: 1 }
+        });
+      }, 500);
+    }
+
+    function moveButton(button) {
+      const x = Math.random() * 250 - 125;
+      const y = Math.random() * 120 - 60;
+
+      button.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  </script>
+
+</body>
+</html>
